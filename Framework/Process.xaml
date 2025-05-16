@@ -163,7 +163,7 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="System_DeleteCompletedPdfNCsv - Invoke Workflow File (SystemFolder\System_DeleteCompletedPdfNCsv.xaml)" sap:VirtualizedContainerService.HintSize="479,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SystemFolder\System_DeleteCompletedPdfNCsv.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_CompletedFolderName">[in_TransactionItem.SpecificContent("CSVFileLocation").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CompletedFolderName">[ExcelFolderPath]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>
