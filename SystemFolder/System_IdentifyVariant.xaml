@@ -96,13 +96,19 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="System_IdentifyVariant" sap:VirtualizedContainerService.HintSize="1672,877.04" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="System_IdentifyVariant" sap:VirtualizedContainerService.HintSize="1786,1011.04" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Identifying file variant&quot;]" />
+    <ui:LogMessage sap2010:Annotation.AnnotationText="Identifyin variant in order to give a generic name to the excel file which will store all the info extracted for every variant" DisplayName="Log Message - Identifying variant" sap:VirtualizedContainerService.HintSize="416,230" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Identifying file variant&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
     <If Condition="[in_ReferenceToFileName.Contains(&quot;GAS_STMT&quot;)]" DisplayName="If - Hiland" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -375,6 +381,6 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,164" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Variant found: &quot; + out_VariantName]" />
+    <ui:LogMessage DisplayName="Log Message - Variant found" sap:VirtualizedContainerService.HintSize="416,164" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Variant found: &quot; + out_VariantName]" />
   </Sequence>
 </Activity>

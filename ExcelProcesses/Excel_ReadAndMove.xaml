@@ -96,14 +96,20 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Excel_ReadAndMove" sap:VirtualizedContainerService.HintSize="1672,877.04" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Excel_ReadAndMove" sap:VirtualizedContainerService.HintSize="1786,1011.04" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Reading excel content&quot;]" />
-    <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[out_dt_StatementInfo]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="416,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Data" WorkbookPath="[in_CSVFileLocation]" />
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Excel file read succesfully&quot;]" />
+    <ui:LogMessage DisplayName="Log Message - Reading file" sap:VirtualizedContainerService.HintSize="416,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Reading excel content&quot;]" />
+    <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" sap2010:Annotation.AnnotationText="Reading the excel data and then storing it inside the argument" DataTable="[out_dt_StatementInfo]" DisplayName="Read Range Workbook - Excel data" sap:VirtualizedContainerService.HintSize="416,162" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Data" WorkbookPath="[in_CSVFileLocation]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ReadRange>
+    <ui:LogMessage DisplayName="Log Message - Excel file read succesfully" sap:VirtualizedContainerService.HintSize="416,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Excel file read succesfully&quot;]" />
   </Sequence>
 </Activity>

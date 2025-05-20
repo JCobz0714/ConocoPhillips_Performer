@@ -124,7 +124,7 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Excel_AppendStatementInfo" sap:VirtualizedContainerService.HintSize="1666,1687" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Excel_AppendStatementInfo" sap:VirtualizedContainerService.HintSize="1780,1864" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ExcelName" />
     </Sequence.Variables>
@@ -133,8 +133,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Appending the data table information to the new excel&quot;]" />
-    <Assign sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:LogMessage DisplayName="Log Message - Appending information" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Appending the data table information to the new excel&quot;]" />
+    <Assign DisplayName="Assign - Assigning the file name" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[ExcelName]</OutArgument>
       </Assign.To>
@@ -142,7 +142,12 @@
         <InArgument x:TypeArguments="x:String">[Environment.ExpandEnvironmentVariables(in_Config("ExcelFolderPath").ToString) + in_ExcelFileName + ".xlsx"]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[Not File.Exists(Environment.ExpandEnvironmentVariables(in_Config(&quot;ExcelFolderPath&quot;).ToString))]" sap:VirtualizedContainerService.HintSize="434,390" sap2010:WorkflowViewState.IdRef="If_3">
+    <If sap2010:Annotation.AnnotationText="If the folder does not exists, it will create it" Condition="[Not File.Exists(Environment.ExpandEnvironmentVariables(in_Config(&quot;ExcelFolderPath&quot;).ToString))]" DisplayName="If - Folder already exists" sap:VirtualizedContainerService.HintSize="434,421" sap2010:WorkflowViewState.IdRef="If_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
       <If.Then>
         <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,163" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
@@ -163,7 +168,12 @@
         </Sequence>
       </If.Else>
     </If>
-    <If Condition="[Not File.Exists(ExcelName)]" sap:VirtualizedContainerService.HintSize="434,824" sap2010:WorkflowViewState.IdRef="If_1">
+    <If sap2010:Annotation.AnnotationText="If excel file does not exists, it will create the file and then it will write all the information extracted" Condition="[Not File.Exists(ExcelName)]" DisplayName="If - File exists" sap:VirtualizedContainerService.HintSize="434,969" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
       <If.Then>
         <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,199" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
@@ -175,26 +185,33 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,487" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence sap2010:Annotation.AnnotationText="If the file exists, it will read all the info, then it will invoke a merge method to merge all the old data with the new extracted file information to not lose anything and then it will re-insert all the data to the excel file but with the new extracted info in it" DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,590" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="DataTemp" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[DataTemp]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="382,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[ExcelName]" />
-          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="Merge">
+          <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[DataTemp]" DisplayName="Read Range Workbook - Main file" sap:VirtualizedContainerService.HintSize="382,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[ExcelName]" />
+          <InvokeMethod DisplayName="Invoke Method - Merge info" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="Merge">
             <InvokeMethod.TargetObject>
               <InArgument x:TypeArguments="sd:DataTable">[in_DtStatementInfo]</InArgument>
             </InvokeMethod.TargetObject>
             <InArgument x:TypeArguments="sd:DataTable">[DataTemp]</InArgument>
           </InvokeMethod>
-          <ui:WriteRange StartingCell="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[in_DtStatementInfo]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="382,139" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="Sheet1" WorkbookPath="[ExcelName]" />
+          <ui:WriteRange StartingCell="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" sap2010:Annotation.AnnotationText="Saving the merged information" DataTable="[in_DtStatementInfo]" DisplayName="Write Range Workbook - Main file" sap:VirtualizedContainerService.HintSize="382,170" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="Sheet1" WorkbookPath="[ExcelName]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:WriteRange>
         </Sequence>
       </If.Else>
     </If>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Data table information appended successfully&quot;]" />
+    <ui:LogMessage DisplayName="Log Message - Info appended successfully" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Data table information appended successfully&quot;]" />
   </Sequence>
 </Activity>
